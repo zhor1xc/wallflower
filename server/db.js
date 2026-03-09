@@ -1,0 +1,1 @@
+export { pool, testDbConnection } from "./config/db.js";

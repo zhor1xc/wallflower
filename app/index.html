@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallflower - агентство недвижимости</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#hero">Wallflower</a>
+      <nav class="menu">
+        <a href="#advantages">ПРЕИМУЩЕСТВА</a>
+        <a href="#about">О НАС</a>
+        <a href="#offers">ЛУЧШИЕ ПРЕДЛОЖЕНИЯ</a>
+        <a href="#cta">ОБРАТНАЯ СВЯЗЬ</a>
+        <a href="#reviews">ОТЗЫВЫ НАШИХ КЛИЕНТОВ</a>
+        <a href="#contacts">КОНТАКТЫ</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="hero" class="hero">
+    <div class="hero-overlay">
+      <h1>Wallflower</h1>
+      <p>Для тех, кто богат не только деньгами</p>
+      <button class="hero-btn" type="button" onclick="document.getElementById('cta').scrollIntoView({ behavior: 'smooth' })">Заказать звонок</button>
+    </div>
+  </section>
+
+  <section id="advantages" class="section">
+    <h2 class="section-title">Наши преимущества</h2>
+    <div class="adv-slider" id="advVP">
+      <div class="adv-track" id="advTrack">
+        <article class="adv-slide">
+          <img src="/images/komfort.png" alt="Комфортный сервис">
+          <span>Комфортный сервис</span>
+        </article>
+        <article class="adv-slide">
+          <img src="/images/safety.jpg" alt="Юридическая безопасность">
+          <span>Юридическая безопасность</span>
+        </article>
+        <article class="adv-slide">
+          <img src="/images/ipoteka.jpg" alt="Ипотека и рассрочка">
+          <span>Ипотека и рассрочка</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2 class="section-title">О нас</h2>
+    <div class="about-text">
+      <p>Wallflower - это выбор подержанных домов с удобным расположением. Наша целевая аудитория - люди 40-55 лет. Мы хотим передать ощущение премиум уровня, но в то же время быть старомодными.</p>
+      <p>Каждый дом в нашей подборке проверен лучшими экспертами по недвижимости. Здесь вы найдете проверенные варианты, чтобы купить надежный дом по выгодной цене - обратиться к нам можно в любое удобное время. Мы обеспечим юридическое сопровождение на всех этапах, помогая безопасно совершить сделку из любого региона России.</p>
+    </div>
+  </section>
+
+  <section id="offers" class="section offers">
+    <div class="offers-panel">
+      <h2 class="section-title">Лучшие предложения</h2>
+      <div class="offers-grid" id="offersGrid"></div>
+    </div>
+  </section>
+
+  <section id="cta" class="cta">
+    <div class="cta-inner">
+      <h2>Нашли дом мечты? Или только начинаете поиск?</h2>
+      <p>Наши эксперты по недвижимости помогут вам с любым вопросом.<br>Заполните форму ниже - мы свяжемся с вами в удобное время и подробно обо всем расскажем.</p>
+      <form id="ctaForm">
+        <input id="fname" name="name" type="text" placeholder="Имя" required>
+        <input id="fphone" name="phone" type="tel" placeholder="Номер телефона" required>
+        <input id="femail" name="email" type="email" placeholder="Email" required>
+        <input id="fcomment" name="comment" type="text" placeholder="Комментарий и вопросы *необязательно">
+        <select id="ftype" name="type" required>
+          <option value="">Цель обращения</option>
+          <option value="consult">Получить бесплатную консультацию по выбору</option>
+          <option value="visit">Хочу посмотреть этот дом</option>
+          <option value="mortgage">Рассчитать ипотеку / обсудить условия покупки</option>
+          <option value="tour">Заказать просмотр нескольких объектов</option>
+        </select>
+        <button type="submit">ЗАКАЗАТЬ ЗВОНОК</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="reviews" class="section">
+    <h2 class="section-title">Отзывы наших клиентов</h2>
+    <div class="reviews-frame" id="revVP">
+      <div class="reviews-track" id="revTrack">
+        <article class="review-card">
+          <h3>Иванов И. — купил дом «Ампир» в Калужской области</h3>
+          <p>«Долго искали дом для постоянного проживания за городом, но всё не то: то участок маленький, то документы вызывали вопросы. Обратились сюда почти наугад. И сразу почувствовали разницу. Нам не просто скинули ссылки, а спросили, как мы видим жизнь за городом, что для нас важно. Эксперт Мария подобрала три варианта, один из которых стал нашим домом. Она же настояла на дополнительной проверке юридической чистоты — и не зря, нашли старый долг по электроэнергии. Всё урегулировали до сделки. Спасибо за профессионализм и честный подход! Рекомендуем вас всем»</p>
+        </article>
+        <article class="review-card">
+          <h3>Петрова С. — купила коттедж «Браво» в Ленинградской области</h3>
+          <p>«Никогда раньше не покупала недвижимость самостоятельно — казалось, это очень сложно и страшно. Но команда Wallflower сопроводила меня на каждом шаге: объяснили все юридические нюансы, помогли разобраться с ипотекой, организовали просмотр в удобное для меня время. Дом нашли за три недели. Сделка прошла чисто, без сюрпризов. Теперь живу у леса и не могу нарадоваться. Обязательно обращусь снова, если буду рассматривать второй объект»</p>
+        </article>
+        <article class="review-card">
+          <h3>Соколов А. — купил загородный дом «Сказка» под Казанью</h3>
+          <p>«Обращался в несколько агентств — везде давили на срочность и предлагали то, что было выгодно им, а не мне. Здесь всё иначе: менеджер Дмитрий сразу уточнил бюджет, сроки и пожелания по расположению, и предложил только реальные варианты. Дом нашли с первого выезда, что меня удивило. Цена оказалась на 8% ниже рынка. Документы оформили за две недели. Очень доволен и уже посоветовал Wallflower нескольким знакомым»</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts" class="section">
+    <h2 class="section-title">Контакты</h2>
+    <div class="contacts-grid">
+      <article class="contact-card">
+        <div class="icon"><img src="/images/phone.png"></div>
+        <p>+79233989013</p>
+      </article>
+      <article class="contact-card">
+        <div class="icon"><img src="/images/address.png"></div>
+        <p>г. Волгоград,<br>Центральный р-н, ул.<br>Примерная, д. 34</p>
+      </article>
+      <article class="contact-card">
+        <div class="icon"><img src="/images/email.png"></div>
+        <p>Wallflower34@gmail.com</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-col-main">
+        <p>На нашем сайте вы найдете любой дом, соответствующий вашим запросам, частные дома в черте города, коттеджи, загородные дома.</p>
+        <p>Все дома, представленные на нашем сайте, отобраны лучшими специалистами в этой области.</p>
+        <p>Copyright © 2026 Крылов Г.А.</p>
+      </div>
+      <div class="footer-col">
+        <h4>КОМПАНИЯ WALLFLOWER</h4>
+        <a href="#hero">Главная</a>
+        <a href="#about">О нас</a>
+      </div>
+      <div class="footer-col">
+        <h4>ПОКУПАТЕЛЯМ</h4>
+        <a href="#offers">Лучшие предложения</a>
+        <a href="#reviews">Отзывы клиентов</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <div class="footer-col">
+        <h4>ПОМОЩЬ</h4>
+        <a href="#cta">Как заказать звонок</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <button class="close-btn" type="button" onclick="closeModal()">×</button>
+      <img id="modalImg" alt="">
+      <div class="modal-body">
+        <h3 id="modalTitle"></h3>
+        <p id="modalMeta"></p>
+        <p id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Заявка отправлена! Мы свяжемся с вами скоро.</div>
+  <script src="app.js"></script>
+</body>
+</html>

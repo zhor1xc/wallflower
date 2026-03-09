@@ -1,0 +1,2 @@
+DATABASE_URL=postgresql://postgres.liplqzxmxqcsjrhhwjyh:admingoha777qwe@aws-1-eu-west-1.pooler.supabase.com:6543/postgres
+ssl=true
