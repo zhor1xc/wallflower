@@ -1,3 +1,5 @@
+/* ===== КАРТОЧКИ ПРЕДЛОЖЕНИЙ ===== */
+
 const offersGrid   = document.getElementById('offersGrid');
 const modalOverlay = document.getElementById('modalOverlay');
 const modalImg     = document.getElementById('modalImg');
@@ -5,48 +7,48 @@ const modalTitle   = document.getElementById('modalTitle');
 const modalMeta    = document.getElementById('modalMeta');
 const modalDesc    = document.getElementById('modalDesc');
 
-const PLACEHOLDER_IMG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN89+rVfwAI9AN7fGVYiwAAAABJRU5ErkJggg==';
+const PLACEHOLDER = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN89+rVfwAI9AN7fGVYiwAAAABJRU5ErkJggg==';
 
 const fallbackOffers = [
   {
-    id:          1,
-    title:       'Дом «Усадьба у леса», Ленинградская область',
-    tag:         'Для постоянного жилья. Инфраструктура рядом',
-    imageUrl:    PLACEHOLDER_IMG,
-    meta:        '75 м², 2 этажа, 3 комнаты, участок 12 соток',
+    id: 1,
+    title:    'Дом «Усадьба у леса», Ленинградская область',
+    tag:      'Для постоянного жилья. Инфраструктура рядом',
+    imageUrl: '/images/house_1.webp',
+    meta:     '75 м², 2 этажа, 3 комнаты, участок 12 соток',
     description: 'Просторный загородный дом в окружении леса. Тихий район, удобный подъезд, выполнена отделка.',
-    price:       '6 200 000 ₽',
-    address:     'Ленинградская обл., Примерный р-н',
+    price:   '6 200 000 ₽',
+    address: 'Ленинградская обл., Примерный р-н',
   },
   {
-    id:          2,
-    title:       'Дача «Яблоневый сад», Подмосковье',
-    tag:         'Для постоянного жилья. Подключены коммуникации',
-    imageUrl:    PLACEHOLDER_IMG,
-    meta:        '50 м², 1 этаж, 2 комнаты, участок 8 соток',
+    id: 2,
+    title:    'Дача «Яблоневый сад», Подмосковье',
+    tag:      'Для постоянного жилья. Подключены коммуникации',
+    imageUrl: '/images/house_2.webp',
+    meta:     '50 м², 1 этаж, 2 комнаты, участок 8 соток',
     description: 'Дом в классическом стиле у воды. Рядом лес, магазин и остановка. Подходит для жизни круглый год.',
-    price:       '3 800 000 ₽',
-    address:     'Подмосковье, г. Приозерск',
+    price:   '3 800 000 ₽',
+    address: 'Подмосковье, г. Приозерск',
   },
   {
-    id:          3,
-    title:       'Современный дом «Минимум», Краснодар',
-    tag:         'Скидки на заселение. Ипотека 8.9%',
-    imageUrl:    PLACEHOLDER_IMG,
-    meta:        '90 м², 1 этаж, 4 комнаты, участок 10 соток',
+    id: 3,
+    title:    'Современный дом «Минимум», Краснодар',
+    tag:      'Скидки на заселение. Ипотека 8.9%',
+    imageUrl: '/images/house_3.webp',
+    meta:     '90 м², 1 этаж, 4 комнаты, участок 10 соток',
     description: 'Панорамное остекление, большая терраса и участок правильной формы. Все документы готовы.',
-    price:       '8 500 000 ₽',
-    address:     'Краснодарский край, пос. Янино-1',
+    price:   '8 500 000 ₽',
+    address: 'Краснодарский край, пос. Янино-1',
   },
   {
-    id:          4,
-    title:       'Коттедж «Сосновый берег», Карелия',
-    tag:         'Уже доступен к просмотру в выходные',
-    imageUrl:    PLACEHOLDER_IMG,
-    meta:        '140 м², 2 этажа, 5 комнат, участок 15 соток',
+    id: 4,
+    title:    'Коттедж «Сосновый берег», Карелия',
+    tag:      'Уже доступен к просмотру в выходные',
+    imageUrl: '/images/house_4.webp',
+    meta:     '140 м², 2 этажа, 5 комнат, участок 15 соток',
     description: 'Тёплый дом из керамического блока, благоустроенный двор и удобная транспортная доступность.',
-    price:       '11 900 000 ₽',
-    address:     'Карелия,стн. Советский',
+    price:   '11 900 000 ₽',
+    address: 'Карелия, стн. Советский',
   },
 ];
 
@@ -55,37 +57,35 @@ let offersData = [];
 function renderOffers(items) {
   offersData = items;
   offersGrid.innerHTML = '';
-  items.forEach((item, index) => {
+  items.forEach((item, i) => {
     const card = document.createElement('article');
     card.className = 'offer';
     card.innerHTML =
-      '<div class="offer-tag">' + item.tag + '</div>' +
-      '<img src="' + (item.imageUrl || PLACEHOLDER_IMG) + '" alt="' + item.title + '" loading="lazy">' +
-      '<p class="offer-meta">' + item.meta + '</p>' +
-      '<button type="button" data-index="' + index + '">Подробнее</button>';
+      `<div class="offer-tag">${item.tag}</div>` +
+      `<img src="${item.imageUrl || PLACEHOLDER}" alt="${item.title}" loading="lazy">` +
+      `<p class="offer-meta">${item.meta}</p>` +
+      `<button type="button" data-index="${i}">Подробнее</button>`;
     offersGrid.appendChild(card);
   });
 }
 
 async function loadOffers() {
   try {
-    const res  = await fetch('/api/offers');
-    if (!res.ok) throw new Error('API error');
-    const data = await res.json();
-    renderOffers(data);
+    const res = await fetch('/api/offers');
+    if (!res.ok) throw new Error();
+    renderOffers(await res.json());
   } catch {
     renderOffers(fallbackOffers);
   }
 }
 
-offersGrid.addEventListener('click', function(event) {
-  const target = event.target;
-  if (!(target instanceof HTMLElement) || target.tagName !== 'BUTTON') return;
-  const index = Number(target.dataset.index);
-  const item  = offersData[index];
+offersGrid.addEventListener('click', e => {
+  const btn = e.target.closest('button[data-index]');
+  if (!btn) return;
+  const item = offersData[+btn.dataset.index];
   if (!item) return;
 
-  modalImg.src           = item.imageUrl || PLACEHOLDER_IMG;
+  modalImg.src           = item.imageUrl || PLACEHOLDER;
   modalImg.alt           = item.title;
   modalTitle.textContent = item.title;
   modalMeta.textContent  = item.meta +
@@ -98,147 +98,129 @@ offersGrid.addEventListener('click', function(event) {
 function closeModal() { modalOverlay.classList.remove('active'); }
 window.closeModal = closeModal;
 
-modalOverlay.addEventListener('click', function(e) {
-  if (e.target === modalOverlay) closeModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
+modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 loadOffers();
 
+/* ===== МАСКА ТЕЛЕФОНА ===== */
 (function () {
-  var phoneInput = document.getElementById('fphone');
-  if (!phoneInput) return;
+  const phone = document.getElementById('fphone');
+  if (!phone) return;
 
-  function formatPhone(value) {
-    var digits = value.replace(/\D/g, '');
-
-    if (digits.startsWith('8')) digits = '7' + digits.slice(1);
-    if (!digits.startsWith('7')) digits = '7' + digits;
-
-    digits = digits.slice(0, 11);
-
-    var d = digits.slice(1);
-    var result = '+7';
-    if (d.length > 0) result += ' (' + d.slice(0, 3);
-    if (d.length >= 3) result += ') ' + d.slice(3, 6);
-    if (d.length >= 6) result += ' - ' + d.slice(6, 8);
-    if (d.length >= 8) result += ' - ' + d.slice(8, 10);
-    return result;
+  function fmt(val) {
+    let d = val.replace(/\D/g, '');
+    if (d.startsWith('8')) d = '7' + d.slice(1);
+    if (!d.startsWith('7')) d = '7' + d;
+    d = d.slice(0, 11);
+    const n = d.slice(1);
+    let r = '+7';
+    if (n.length > 0) r += ' (' + n.slice(0, 3);
+    if (n.length >= 3) r += ') ' + n.slice(3, 6);
+    if (n.length >= 6) r += ' - ' + n.slice(6, 8);
+    if (n.length >= 8) r += ' - ' + n.slice(8, 10);
+    return r;
   }
 
-  phoneInput.addEventListener('input', function () {
-    var pos = this.selectionStart;
-    var old = this.value;
-    this.value = formatPhone(this.value);
-    var diff = this.value.length - old.length;
+  phone.addEventListener('input', function () {
+    const pos = this.selectionStart;
+    const old = this.value;
+    this.value = fmt(this.value);
+    const diff = this.value.length - old.length;
     this.setSelectionRange(pos + diff, pos + diff);
   });
-
-  phoneInput.addEventListener('focus', function () {
-    if (!this.value) this.value = '+7 (';
+  phone.addEventListener('focus',   function () { if (!this.value) this.value = '+7 ('; });
+  phone.addEventListener('keydown', function (e) {
+    if ((e.key === 'Backspace' || e.key === 'Delete') && this.value.length <= 4) e.preventDefault();
   });
-
-  phoneInput.addEventListener('keydown', function (e) {
-    if ((e.key === 'Backspace' || e.key === 'Delete') && this.value.length <= 4) {
-      e.preventDefault();
-    }
-  });
-
-  phoneInput.addEventListener('blur', function () {
-    if (this.value === '+7 (') this.value = '';
-  });
+  phone.addEventListener('blur', function () { if (this.value === '+7 (') this.value = ''; });
 })();
 
-var advVP      = document.getElementById('advVP');
-var advTrack   = document.getElementById('advTrack');
-var advIndex   = 0;
-var advStart   = 0;
-var advDelta   = 0;
-var advDragging = false;
+/* ===== СЛАЙДЕР ПРЕИМУЩЕСТВ (drag/swipe) ===== */
+(function () {
+  const vp    = document.getElementById('advVP');
+  const track = document.getElementById('advTrack');
+  let idx = 0, startX = 0, delta = 0, dragging = false;
 
-function goAdv(index) {
-  var max = advTrack.children.length - 1;
-  advIndex = Math.max(0, Math.min(max, index));
-  advTrack.style.transition = 'transform 0.35s ease';
-  advTrack.style.transform  = 'translateX(-' + (advIndex * 100) + '%)';
-}
+  function go(i) {
+    idx = Math.max(0, Math.min(track.children.length - 1, i));
+    track.style.transition = 'transform 0.35s ease';
+    track.style.transform  = `translateX(-${idx * 100}%)`;
+  }
 
-advVP.addEventListener('mousedown', function(e) {
-  advDragging = true; advStart = e.clientX; advDelta = 0;
-  advTrack.style.transition = 'none';
-});
-document.addEventListener('mousemove', function(e) {
-  if (!advDragging) return;
-  advDelta = e.clientX - advStart;
-  advTrack.style.transform = 'translateX(' + (-advIndex * advVP.offsetWidth + advDelta) + 'px)';
-});
-document.addEventListener('mouseup', function() {
-  if (!advDragging) return;
-  advDragging = false;
-  if (advDelta < -45) goAdv(advIndex + 1);
-  else if (advDelta > 45) goAdv(advIndex - 1);
-  else goAdv(advIndex);
-});
-advVP.addEventListener('touchstart', function(e) {
-  advStart = e.touches[0].clientX; advDelta = 0;
-  advTrack.style.transition = 'none';
-}, { passive: true });
-advVP.addEventListener('touchmove', function(e) {
-  advDelta = e.touches[0].clientX - advStart;
-  advTrack.style.transform = 'translateX(' + (-advIndex * advVP.offsetWidth + advDelta) + 'px)';
-}, { passive: true });
-advVP.addEventListener('touchend', function() {
-  if (advDelta < -45) goAdv(advIndex + 1);
-  else if (advDelta > 45) goAdv(advIndex - 1);
-  else goAdv(advIndex);
-});
-goAdv(0);
+  vp.addEventListener('mousedown', e => {
+    dragging = true; startX = e.clientX; delta = 0;
+    track.style.transition = 'none';
+  });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    delta = e.clientX - startX;
+    track.style.transform = `translateX(${-idx * vp.offsetWidth + delta}px)`;
+  });
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    if (delta < -45) go(idx + 1);
+    else if (delta > 45) go(idx - 1);
+    else go(idx);
+  });
+  vp.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX; delta = 0;
+    track.style.transition = 'none';
+  }, { passive: true });
+  vp.addEventListener('touchmove', e => {
+    delta = e.touches[0].clientX - startX;
+    track.style.transform = `translateX(${-idx * vp.offsetWidth + delta}px)`;
+  }, { passive: true });
+  vp.addEventListener('touchend', () => {
+    if (delta < -45) go(idx + 1);
+    else if (delta > 45) go(idx - 1);
+    else go(idx);
+  });
 
-var revVP    = document.getElementById('revVP');
-var revTrack = document.getElementById('revTrack');
-var revIndex = 0;
-var REV_INTERVAL = 6000;
+  go(0);
+})();
 
-function goRev(index) {
-  var count = revTrack.children.length;
-  revIndex = ((index % count) + count) % count;
-  revTrack.style.transition = 'transform 0.6s ease';
-  revTrack.style.transform  = 'translateX(-' + (revIndex * 100) + '%)';
-}
+/* ===== СЛАЙДЕР ОТЗЫВОВ (авто) ===== */
+(function () {
+  const vp    = document.getElementById('revVP');
+  const track = document.getElementById('revTrack');
+  let idx = 0;
 
-var revTimer = setInterval(function() { goRev(revIndex + 1); }, REV_INTERVAL);
+  function go(i) {
+    const count = track.children.length;
+    idx = ((i % count) + count) % count;
+    track.style.transition = 'transform 0.6s ease';
+    track.style.transform  = `translateX(-${idx * 100}%)`;
+  }
 
-revVP.addEventListener('mouseenter', function() { clearInterval(revTimer); });
-revVP.addEventListener('mouseleave', function() {
-  revTimer = setInterval(function() { goRev(revIndex + 1); }, REV_INTERVAL);
-});
+  let timer = setInterval(() => go(idx + 1), 6000);
+  vp.addEventListener('mouseenter', () => clearInterval(timer));
+  vp.addEventListener('mouseleave', () => { timer = setInterval(() => go(idx + 1), 6000); });
 
-goRev(0);
+  go(0);
+})();
 
-document.getElementById('ctaForm').addEventListener('submit', async function(event) {
-  event.preventDefault();
-  var form = event.currentTarget;
-  var body = {
-    name:    form.name.value.trim(),
-    phone:   form.phone.value.trim(),
-    email:   form.email.value.trim(),
-    comment: form.comment.value.trim(),
-    type:    form.type.value,
-  };
-
+/* ===== ФОРМА ОБРАТНОЙ СВЯЗИ ===== */
+document.getElementById('ctaForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const f = e.currentTarget;
   try {
     await fetch('/api/leads', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(body),
+      body: JSON.stringify({
+        name:    f.name.value.trim(),
+        phone:   f.phone.value.trim(),
+        email:   f.email.value.trim(),
+        comment: f.comment.value.trim(),
+        type:    f.type.value,
+      }),
     });
-  } catch(e) {
-  }
+  } catch { /* отправка не обязательна для UX */ }
 
-  var toast = document.getElementById('toast');
+  const toast = document.getElementById('toast');
   toast.classList.add('show');
-  form.reset();
-  setTimeout(function() { toast.classList.remove('show'); }, 3000);
+  f.reset();
+  setTimeout(() => toast.classList.remove('show'), 3000);
 });
